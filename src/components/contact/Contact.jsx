@@ -1,11 +1,28 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import img from "../images/pricing.jpg"
 import Back from "../common/Back"
 import "./contact.css"
 
+import LoadingBar from 'react-top-loading-bar'
+
 const Contact = () => {
+  const [progress, setProgress] = useState(0)
+  useEffect(()=>{
+    setProgress(70);
+    setTimeout(()=> {
+      setProgress(100);
+    }, 1000 )
+    
+  },[])
+
   return (
     <>
+      <LoadingBar
+        color='#27ae60'
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
+      
       <section className='contact mb'>
         <Back name='Contact Us' title='Get Helps & Friendly Support' cover={img} />
         <div className='container'>
